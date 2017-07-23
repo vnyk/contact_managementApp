@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using crud1.Models;
+using System.Configuration;
 
 namespace crud1
 {
@@ -54,9 +55,10 @@ namespace crud1
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: ConfigurationManager.AppSettings["AppId"]//"460050404359569",
+               , appSecret: ConfigurationManager.AppSettings["AppSecret"]);
+            //"968e090cd9354c016284c87f31bd6282");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
