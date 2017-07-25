@@ -28,7 +28,6 @@ namespace crud1.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-''
             context.Contacts.AddOrUpdate(
                 p => p.Id,
                 new Models.Contact { Id = 1, Birthday = new DateTime(1920, 01, 20), City = "Chicago"
