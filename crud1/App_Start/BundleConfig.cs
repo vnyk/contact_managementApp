@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace crud1
 {
@@ -19,11 +18,14 @@ namespace crud1
                         "~/js/lib/dataTables.bootstrap.min.js",
                         "~/js/lib/dataTables.colReorder.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+                         "~/js/lib/jquery-ui.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/css/bootstrap.min.css",
                       "~/css/jquery.dataTables.min.css",
                       "~/css/jquery.dataTables_themeroller.css",
-                      "~/css/dataTables.bootstrap.min.css",
+                      "~/css/dataTables.bootstrap.min.css", "~/css/jquery-ui.min.css",
                       "~/css/colReorder.bootstrap.min.css",
                       "~/css/site.css"));
         }

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using crud1.Models;
 using Microsoft.AspNet.Identity;
@@ -40,7 +37,7 @@ namespace crud1.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Contact contact = db.Contacts.Find(id);
-            if (contact == null)
+            if (contact == null || !EnsureIsUserConact(contact))
             {
                 return HttpNotFound();
             }
@@ -51,6 +48,7 @@ namespace crud1.Controllers
         [Authorize]
         public ActionResult Create()
         {
+            ViewBag.UserId = GetCurrentUserId();
             return View();
         }
 
@@ -68,6 +66,7 @@ namespace crud1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.UserId = GetCurrentUserId();
 
             return View(contact);
         }
@@ -81,10 +80,11 @@ namespace crud1.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Contact contact = db.Contacts.Find(id);
-            if (contact == null)
+            if (contact == null|| !EnsureIsUserConact(contact))
             {
                 return HttpNotFound();
             }
+            ViewBag.UserId = GetCurrentUserId();
             return View(contact);
         }
 
@@ -102,6 +102,7 @@ namespace crud1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.UserId = GetCurrentUserId();
             return View(contact);
         }
 
@@ -114,7 +115,7 @@ namespace crud1.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Contact contact = db.Contacts.Find(id);
-            if (contact == null)
+            if (contact == null || !EnsureIsUserConact(contact))
             {
                 return HttpNotFound();
             }
@@ -128,6 +129,10 @@ namespace crud1.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Contact contact = db.Contacts.Find(id);
+            if(!EnsureIsUserConact(contact))
+            {
+                return HttpNotFound();
+            }
             db.Contacts.Remove(contact);
             db.SaveChanges();
             return RedirectToAction("Index");
