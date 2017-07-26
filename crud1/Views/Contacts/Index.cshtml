@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<crud1.Models.Contact>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My contacts";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<table id="your_contacts" class="table">
+<table id="your_contacts" class="dataTables_wrapper compact">
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.FirstName)</th>
@@ -44,8 +44,8 @@
                 <td>@Html.DisplayFor(modelItem => item.State)</td>
                 <td>@Html.DisplayFor(modelItem => item.Zip)</td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })|
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
                 <td>@Html.HiddenFor(modelItem => item.UserId)</td>
@@ -60,23 +60,20 @@
        $(function () {
            $("#your_contacts").dataTable({
                "pagingType": "full_numbers"
-                       , "scrollY": "600px"
-                       , "columnDefs": [
-                           { "width": "45px", "targets": 0 }
-                           , { "width": "45px", "targets": 1 }
-                           , { "width": "45px", "targets": 2 }
-                           , { "width": "45px", "targets": 3 }
-                           , { "width": "45px", "targets": 4 }
-                           , { "width": "45px", "targets": 5 }
-                           , { "width": "45px", "targets": 6 }
-                           , { "width": "45px", "targets": 7 }
-                           , { "width": "45px", "targets": 8 }
-                           , { "width": "45px", "targets": 9 }
-                           , { "width": "45px", "targets": 10 }
-                           , { "width": "45px", "targets": 11 }
-                           , { "width": "45px", "targets": 12 }
-                       ]
-                       , "order": [[1, "desc"]]
+                           , "columnDefs": [
+                           { "width": "10px", "targets": 0 }
+                           , { "width": "10px", "targets": 1 }
+                           , { "width": "10px", "targets": 2 }
+                           , { "width": "10px", "targets": 3 }
+                           , { "width": "10px", "targets": 4 }
+                           , { "width": "10px", "targets": 5 }
+                           , { "width": "10px", "targets": 6 }
+                           , { "width": "10px", "targets": 7 }
+                           , { "width": "10px", "targets": 8 }
+                           , { "width": "10px", "targets": 9 }
+                           , { "width": "10px", "targets": 10 }
+                                                  ]
+                       , "order": [[1, "asc"]]
                        , "dom": 'Rlfrtip'
                        , "stateSave": "true"
                        , "lengthMenu": [[-1, 10, 20, 50, 100], ["All", 10, 20, 50, 100]]
